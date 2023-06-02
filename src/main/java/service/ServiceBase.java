@@ -9,7 +9,7 @@ public class ServiceBase {
 
     //EntityManagerインスタンス
 
-    protected EntityManager em =DBUtil.creatEntityManager();
+    protected EntityManager em = DBUtil.creatEntityManager();
 
 //EntityManagerのクローズ
     public void close() {

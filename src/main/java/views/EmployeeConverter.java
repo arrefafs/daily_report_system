@@ -27,9 +27,9 @@ public class EmployeeConverter {
                 ev.getPassword(),
                 ev.getAdminFlag() == null
                         ? null
-                        : ev.getAdminFlag() == jpaConst.ROLE_ADMIN
-                                ? AttributeConst.ROLE_ADMIN.getIntegerValue()
-                                : AttributeConst.ROLE_GENERAL.getIntegerValue(),
+                        : ev.getAdminFlag() == AttributeConst.ROLE_ADMIN.getIntegerValue()
+                                ? jpaConst.ROLE_ADMIN
+                                : jpaConst.ROLE_GENERAL,
                 ev.getCreatedAt(),
                 ev.getUpdatedAt(),
                 ev.getDeleteFlag() == null

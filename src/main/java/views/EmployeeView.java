@@ -37,10 +37,4 @@ public class EmployeeView {
 
     private Integer deleteFlag;
 
-
-
-
-
-
-
 }

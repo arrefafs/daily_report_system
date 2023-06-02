@@ -49,11 +49,25 @@ public class EmployeeAction extends ActionBase {
         putRequestScope(AttributeConst.PAGE,page);//ページ数
         putRequestScope(AttributeConst.MAX_ROW, jpaConst.ROW_PER_PAGE);
 
+      //セッションにフラッシュメッセージが設定されている場合はリクエストスコープに移し替え、セッションからは削除する
+        String flush = getSessionScope(AttributeConst.FLUSH);
+        if(flush != null) {
+            putRequestScope(AttributeConst.FLUSH, flush);
+            removeSessionScope(AttributeConst.FLUSH);
+        }
+        //一覧画面を表示する
+        forward(ForwardConst.FW_EMP_INDEX);
     }
+
+
+
         public void entryNew() throws ServletException, IOException {
 
-            putRequestScope(AttributeConst.TOKEN,getTokenId());
-            putRequestScope(AttributeConst.EMPLOYEE,new EmployeeView());
+            putRequestScope(AttributeConst.TOKEN,getTokenId());//CSRF対策用トークン
+            putRequestScope(AttributeConst.EMPLOYEE,new EmployeeView());//空の従業員インスタンス
+
+            //新規登録画面を表示
+            forward(ForwardConst.FW_REP_NEW);
 
         }
 
@@ -62,6 +76,7 @@ public class EmployeeAction extends ActionBase {
             //CSRF対策 tokenのチェック
             if(checkToken()) {
 
+                //パラメータの値を元に従業員情報のインスタンスを作成する
                 EmployeeView ev = new EmployeeView(
                         null,
                         getRequestParam(AttributeConst.EMP_CODE),
@@ -104,7 +119,7 @@ public class EmployeeAction extends ActionBase {
 public void show() throws ServletException, IOException{
 
 //idを条件に従業員データを取得する
-    EmployeeView ev = service.findOne(getRequestParam(AttributeConst.EMP_ID)));
+    EmployeeView ev = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
 
     if(ev == null || ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
 
@@ -120,19 +135,25 @@ putRequestScope(AttributeConst.EMPLOYEE,ev);//取得した従業員情報
 forward(ForwardConst.FW_EMP_SHOW);
 }
 
+//編集画面を表示する
 
+public void edit() throws ServletException,IOException{
 
+    //idを条件に従業員データを取得する
+    EmployeeView ev = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
 
-        //セッションにフラッシュメッセージが設定されている場合はリクエストスコープに移し替え、セッションからは削除する
-        String flush = getSessionScope(AttributeConst.FLUSH);
-        if(flush != null) {
-            putRequestScope(AttributeConst.FLUSH,flush);
-            removeSessionScope(AttributeConst.FLUSH);
-        }
-        forward(ForwardConst.FW_EMP_INDEX);
+    if(ev == null || ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
 
-
+        //データが取得できなかった、または論理削除されている場合はエラー画面を表示
+        forward(ForwardConst.FW_ERR_UNKNOWN);
+        return;
     }
+    putRequestScope(AttributeConst.TOKEN,getTokenId());//CSRF対策用トークン
+    putRequestScope(AttributeConst.EMPLOYEE,ev);//取得した従業員情報
+
+    //編集画面を表示する
+    forward(ForwardConst.FW_EMP_EDIT);
+}
 
 /**
  * 更新を行う
@@ -149,7 +170,7 @@ public void update() throws ServletException, IOException {
                 getRequestParam(AttributeConst.EMP_CODE),
                 getRequestParam(AttributeConst.EMP_NAME),
                 getRequestParam(AttributeConst.EMP_PASS),
-                toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG)),
+                toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FIG)),
                 null,
                 null,
                 AttributeConst.DEL_FLAG_FALSE.getIntegerValue());

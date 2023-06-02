@@ -27,7 +27,9 @@ public enum AttributeConst {
     EMPLOYEE("employee"),
     EMPLOYEES("employees"),
     EMP_COUNT("employees_count"),
+    EMP_ID("id"),
     EMP_CODE("code"),
+    EMP_PASS("password"),
     EMP_NAME("name"),
     EMP_ADMIN_FIG("admin_flag"),
 
