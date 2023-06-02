@@ -94,60 +94,31 @@ public class EmployeeAction extends ActionBase {
                             putSessionScope(AttributeConst.FLUSH,MessageConst.I_REGISTERED.getMessage());
 
                             redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         }
 
-
-
-
-
-
-
-
-
             }
+        }
 
 
+
+public void show() throws ServletException, IOException{
+
+//idを条件に従業員データを取得する
+    EmployeeView ev = service.findOne(getRequestParam(AttributeConst.EMP_ID)));
+
+    if(ev == null || ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+
+
+        //データが取得できなかった、または論理削除されている場合はエラー画面を表示
+        forward(ForwardConst.FW_ERR_UNKNOWN);
+        return;
+    }
+
+putRequestScope(AttributeConst.EMPLOYEE,ev);//取得した従業員情報
+
+//詳細画面を表示
+forward(ForwardConst.FW_EMP_SHOW);
+}
 
 
 
@@ -160,6 +131,7 @@ public class EmployeeAction extends ActionBase {
         }
         forward(ForwardConst.FW_EMP_INDEX);
 
-    }
 
+    }
 }
+
