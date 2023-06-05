@@ -24,14 +24,14 @@
     <div id="wrapper">
     <div id="header">
     <div id="header_menu">
-<h1><a href="<c:url value='/?action=${actTop}&command=${commIdx}' />"><h1>日報管理システム</a></h1>&nbsp;&nbsp;&nbsp;
+<h1><a href="<c:url value='/?action=${actTop}&command=${commIdx}' />"> <h1> 日報管理システム</a></h1>&nbsp;&nbsp;&nbsp;
 <c:if test="${sessionScope.login_employee != null}">
                     <c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
                     </c:if>
-                        <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">従業員</a>&nbsp;
+                        <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">従業員管理</a>&nbsp;
                         </c:if>
                         </div>
-
+                      <a href="<c:url value='?action=${actEmp}&command=${commIdx}'/>">日報管理</a>&nbsp;
                         <c:if test="${sessionScope.login_employee != null}">
                 <div id="employee_name">
                     <c:out value="${sessionScope.login_employee.name}" />
