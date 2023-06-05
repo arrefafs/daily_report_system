@@ -24,6 +24,7 @@ public class FrontController extends HttpServlet {
         super();
     }
 
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
