@@ -50,6 +50,7 @@ import lombok.Setter;
 @Entity
 public class Report {
 
+
     /**
      * id
      */

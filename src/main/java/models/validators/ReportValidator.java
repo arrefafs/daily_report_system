@@ -14,6 +14,7 @@ import constants.MessageConst;
 public class ReportValidator {
 
 
+
     /**
      * 日報インスタンスの各項目についてバリデーションを行う
      * @param rv 日報インスタンス
