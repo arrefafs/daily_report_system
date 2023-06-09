@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebFilter;
 
 import actions.view.EmployeeView;
 import constants.AttributeConst;
@@ -17,8 +18,8 @@ import services.EmployeeService;
 
 
 
-
-public class EmployeeAction  extends ActionBase {
+@WebFilter("/*")
+public abstract class EmployeeAction  extends ActionBase {
 
 
     private EmployeeService service;
@@ -37,13 +38,14 @@ public class EmployeeAction  extends ActionBase {
         service.close();
     }
 
+
     /**
      * 一覧画面を表示する
      * @throws ServletException
      * @throws IOException
      */
     public void index() throws ServletException, IOException {
-        if(checkAdmin()) {
+        if(checkAdmin()){
         //指定されたページ数の一覧画面に表示するデータを取得
         int page = getPage();
         List<EmployeeView> employees = service.getPerPage(page);
@@ -214,7 +216,7 @@ if(checkAdmin()) {
                    putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
 
                    //編集画面を再表示
-                   forward(ForwardConst.FW_EMP_EDIT);
+                  forward(ForwardConst.FW_EMP_EDIT);
                } else {
                    //更新中にエラーがなかった場合
 
@@ -255,26 +257,30 @@ if(checkAdmin()) {
            * @throws ServletException
            * @throws IOException
            */
-          private boolean checkAdmin() throws ServletException, IOException {
+         private boolean checkAdmin() throws ServletException, IOException {
 
               //セッションからログイン中の従業員情報を取得
-              EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+              //EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
               //管理者でなければエラー画面を表示
-              if (ev.getAdminFlag() != AttributeConst.ROLE_ADMIN.getIntegerValue()) {
+              //if (ev.getAdminFlag() != AttributeConst.ROLE_ADMIN.getIntegerValue()) {
 
-                  forward(ForwardConst.FW_ERR_UNKNOWN);
-                  return false;
 
-              } else {
+                //  forward(ForwardConst.FW_ERR_UNKNOWN);
+                  //return false;
 
+
+              //}
+              //else {
                   return true;
+              //}
+
               }
 
-          }
+         }
 
 
-}
+
 
 
 
