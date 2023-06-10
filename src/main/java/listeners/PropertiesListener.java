@@ -21,6 +21,7 @@ public class PropertiesListener implements ServletContextListener {
      * Webアプリケーションのシャットダウン時に実行する処理
      */
     public void contextDestroyed(ServletContextEvent arg0) {
+
     }
 
     /**
