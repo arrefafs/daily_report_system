@@ -16,7 +16,7 @@ public class ReportConverter {
 
     /**
      * ViewモデルのインスタンスからDTOモデルのインスタンスを作成する
-     * @param rv ReportViewのインスタンス
+     * @param report ReportViewのインスタンス
      * @return Reportのインスタンス
      */
     public static Report toModel(ReportView rv) {

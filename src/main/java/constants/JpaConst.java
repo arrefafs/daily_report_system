@@ -37,9 +37,17 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
+    //Favoriateテーブル
+    String TABLE_FEP = "favoriate";//テーブル名
+    //いいねテーブルカラム
+    String FEP_COL_ID ="id"; //id
+    String FEP_COL_FMP ="favoriate_id";//登録した従業員のid
+    String FEP_COL_REPORT_ID ="report_id"; //どの日報が登録を押されているか
+
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_FEP ="favoriate";//いいね
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
@@ -71,6 +79,20 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+
+    //全てのReportIdをidの降順に取得する
+    String Q_FEP_GET_ALL = ENTITY_FEP +"getAll";
+    String Q_FEP_GET_ALL_DEF ="SELECT e FROM Favoriate AS e ORDER BY e. id DESC";//
+    //全てのReportIdの件数を取得する
+    String Q_FEP_COUNT = ENTITY_FEP +".count";
+    String Q_FEP_COUNT_DEF ="SELECT COUNT(e) FROM Favoriate AS e";
+    //指定した従業員が作成した日報の件数を取得する
+    String Q_FEP_COUNT_ALL_MINE = ENTITY_FEP +".countAllMine";
+    String Q_FEP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Favoriate AS r WHERE r.Report = ;"+JPQL_PARM_EMPLOYEE;
+    //指定した社員番号を保持する従業員の件数を取得する
+    String Q_FEP_COUNT_REGISTERED_BY_CODE = ENTITY_FEP + ".countRegisteredByCode";
+    String Q_FEP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
+
 
 
 
