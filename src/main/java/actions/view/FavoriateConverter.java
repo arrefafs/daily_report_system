@@ -22,10 +22,11 @@ public class FavoriateConverter {
 
     public static Favoriate toModel(FavoriateView fv) {
         return new Favoriate(
+                ReportConverter.toModel(fv.getReport(),
                 fv.getId(),
                 fv.getEmployee(),
-                fv.getReport(),
-                ReportConverter.toModel(fv.getReport());
+                fv.getReport());
+
     }
 
     // *DTOモデルのインスタンスからViewモデルのインスタンスを作成する
@@ -40,10 +41,11 @@ public class FavoriateConverter {
         }
 
         return new FavoriateView(
+                ReportConverter.toView(f.getReport(),
                 f.getId(),
                 f.getEmployee(),
-                f.getReport();
-                ReportConverter.toView(f.getReport());
+                f.getReport());
+
 
 
 

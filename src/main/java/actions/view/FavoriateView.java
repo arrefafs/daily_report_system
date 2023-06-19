@@ -26,6 +26,7 @@ public class FavoriateView {
 
     private EmployeeView employee;
 
+
     /*
      * どの日報が押されたか
      */

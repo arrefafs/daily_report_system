@@ -16,6 +16,7 @@ public class FavoriateService extends ServiceBase{
 
 
 
+
     //指定した日報データを、指定した
 public List<FavoriateView> getMinePerPage(ReportView report, int page){
 
