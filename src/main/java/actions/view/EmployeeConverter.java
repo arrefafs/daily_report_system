@@ -41,30 +41,30 @@ public class EmployeeConverter {
 
     /**
      * DTOモデルのインスタンスからViewモデルのインスタンスを作成する
-     * @param e Employeeのインスタンス
+     * @param employeeView Employeeのインスタンス
      * @return EmployeeViewのインスタンス
      */
-    public static EmployeeView toView(Employee e) {
+    public static EmployeeView toView(Employee ev) {
 
-        if(e == null) {
+        if(ev == null) {
             return null;
         }
 
         return new EmployeeView(
-                e.getId(),
-                e.getCode(),
-                e.getName(),
-                e.getPassword(),
-                e.getAdminFlag() == null
+                ev.getId(),
+                ev.getCode(),
+                ev.getName(),
+                ev.getPassword(),
+                ev.getAdminFlag() == null
                         ? null
-                        : e.getAdminFlag() == JpaConst.ROLE_ADMIN
+                        : ev.getAdminFlag() == JpaConst.ROLE_ADMIN
                                 ? AttributeConst.ROLE_ADMIN.getIntegerValue()
                                 : AttributeConst.ROLE_GENERAL.getIntegerValue(),
-                e.getCreatedAt(),
-                e.getUpdatedAt(),
-                e.getDeleteFlag() == null
+                ev.getCreatedAt(),
+                ev.getUpdatedAt(),
+                ev.getDeleteFlag() == null
                         ? null
-                        : e.getDeleteFlag() == JpaConst.EMP_DEL_TRUE
+                        : ev.getDeleteFlag() == JpaConst.EMP_DEL_TRUE
                                 ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
                                 : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
     }

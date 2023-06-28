@@ -2,28 +2,33 @@ package services;
 
 import java.util.List;
 
+import actions.view.FavoriateConverter;
 import actions.view.FavoriateView;
-import actions.view.ReportView;
-import constants.JpaConst;
-import models.Favoriate;
-import models.Report;
-
 
 //Favoriateテーブルの操作にかかわるクラス
 
-public class FavoriateService extends ServiceBase{
+public class FavoriateService extends ServiceBase {
 
+    //指定した従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得しReportViewのリストで返却する
 
+    public List<String> create(FavoriateView fv) {
 
+        createInternal(fv);
 
+        //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
+        return null;
+    }
 
-    //指定した日報データを、指定した
-public List<FavoriateView> getMinePerPage(ReportView report, int page){
+    /**
+     * 日報データを1件登録する
+     * @param rv 日報データ
+     */
+    private void createInternal(FavoriateView fv) {
 
-    List<Favoriate> favoriates = em.createNamedQuery(JpaConst.Q_REP_COUNT_ALL_MINE, Report.class)
-            )
-}
+        em.getTransaction().begin();
+        em.persist(FavoriateConverter.toModel(fv));
+        em.getTransaction().commit();
 
-
+    }
 
 }

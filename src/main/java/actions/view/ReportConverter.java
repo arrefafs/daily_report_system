@@ -1,7 +1,5 @@
 package actions.view;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +9,11 @@ import models.Report;
  * 日報データのDTOモデル⇔Viewモデルの変換を行うクラス
  *
  */
-
 public class ReportConverter {
 
     /**
      * ViewモデルのインスタンスからDTOモデルのインスタンスを作成する
-     * @param report ReportViewのインスタンス
+     * @param rv ReportViewのインスタンス
      * @return Reportのインスタンス
      */
     public static Report toModel(ReportView rv) {
@@ -81,10 +78,5 @@ public class ReportConverter {
         r.setUpdatedAt(rv.getUpdatedAt());
 
     }
-
-
-
-
-
 
 }

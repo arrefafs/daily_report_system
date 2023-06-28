@@ -43,6 +43,7 @@ public interface JpaConst {
     String FEP_COL_ID ="id"; //id
     String FEP_COL_FMP ="favoriate_id";//登録した従業員のid
     String FEP_COL_REPORT_ID ="report_id"; //どの日報が登録を押されているか
+    String FEP_COL_EMPLOYEE_ID ="employee_id";
 
     //Entity名
     String ENTITY_EMP = "employee"; //従業員

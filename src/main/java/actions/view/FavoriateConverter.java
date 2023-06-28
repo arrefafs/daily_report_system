@@ -23,8 +23,7 @@ public class FavoriateConverter {
     public static Favoriate toModel(FavoriateView fv) {
         return new Favoriate(
                 fv.getId(),
-                fv.getEmployee(),
-                fv.getReport(),
+                EmployeeConverter.toModel(fv.getEmployee()),
                 ReportConverter.toModel(fv.getReport()));
 
     }
@@ -42,15 +41,9 @@ public class FavoriateConverter {
 
         return new FavoriateView(
                 f.getId(),
-                f.getEmployee(),
-                f.getReport(),
+                EmployeeConverter.toView(f.getEmployee()),
                 ReportConverter.toView(f.getReport()));
-
     }
-
-
-
-
 
     /**
      * DTOモデルのリストからViewモデルのリストを作成する

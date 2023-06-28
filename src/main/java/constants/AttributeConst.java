@@ -48,9 +48,10 @@ public enum AttributeConst {
     REP_CONTENT("content_msg"),
 
     //いいね管理
-    ID("id"),
-    FEP_FMP("favotiate_id"),
-    FEP_REPORT_ID("report_id");
+    FEP_ID("id"),
+    FAVORIATE("favotriate"),
+    FEP_REPORT_ID("report_id"),
+    FEP_EMPLOYEE_ID("employee_id");
 
     private final String text;
     private final Integer i;
