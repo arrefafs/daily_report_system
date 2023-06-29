@@ -8,6 +8,8 @@
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="action" value="${ForwardConst.ACT_FEP.getValue()}" />
+<c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -59,14 +61,21 @@
         <p>
             <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">一覧に戻る</a>
         </p>
+
+
         <p>
-            <input type="hidden" name="${AttributeConst.FEP_ID.getValue()}"
-                value="${favoriate.id}" />
-                <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+            <form method="POST" action="<c:url value='?action= ${action}&command=${commCrt}' />">
+            <input type="hidden" name="_token" value="${_token}" /> <input
+                type="hidden" name="report_id" value="${report.id}" />
+                <input type="submit" value="いいね">
 
-            <button type="submit">いいね</button>
-
+        </form>
         </p>
+
+
+
+
+
 
     </c:param>
 </c:import>

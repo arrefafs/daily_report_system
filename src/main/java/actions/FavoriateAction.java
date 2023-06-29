@@ -45,5 +45,18 @@ public class FavoriateAction extends ActionBase {
         //いいね情報取得
         List<String> errors = service.create(fv);
     }
+    //いいね詳細
+    //@throws ServletException
+    //@throws IOException
+    //
 
-}
+
+
+
+
+
+
+    }
+
+
+
