@@ -23,7 +23,7 @@ import lombok.Setter;
 @NamedQueries({
         @NamedQuery(name = JpaConst.Q_FEP_GET_ALL, query = JpaConst.Q_FEP_GET_ALL_DEF),
         @NamedQuery(name = JpaConst.Q_FEP_COUNT, query = JpaConst.Q_FEP_COUNT_DEF),
-        @NamedQuery(name = JpaConst.Q_FEP_COUNT_ALL_MINE, query = JpaConst.Q_FEP_COUNT_ALL_MINE_DEF),
+        @NamedQuery(name = JpaConst.Q_FEP_COUNT_ALL_MINE, query = JpaConst. Q_FEP_COUNT_ALL_MINE_DEF),
 
 })
 
