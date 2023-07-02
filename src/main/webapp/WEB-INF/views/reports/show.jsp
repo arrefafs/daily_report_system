@@ -64,9 +64,9 @@
 
 
         <p>
-            <form method="POST" action="<c:url value='?action= ${action}&command=${commCrt}' />">
+            <form method="POST"action="<c:url value='?action=${action}&command=${commCrt}' />">
             <input type="hidden" name="_token" value="${_token}" />
-            <input type="hidden" name="report_id" value="${report.id}" />
+            <input type="hidden" name="report_id" id="${report.id}" />
             <input type="submit" value="いいね">
 
         </form>

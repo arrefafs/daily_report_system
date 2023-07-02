@@ -10,19 +10,23 @@ import actions.view.FavoriateView;
 import actions.view.ReportView;
 import constants.AttributeConst;
 import services.FavoriateService;
+import services.ReportService;
 
 public class FavoriateAction extends ActionBase {
 
     private FavoriateService service;
+    private ReportService rservice;
 
     //メゾットを実行する
     @Override
     public void process() throws ServletException, IOException {
 
         service = new FavoriateService();
+        rservice = new ReportService();
 
         //メソッドを実行
         invoke();
+        service.close();
         service.close();
     }
 
@@ -34,13 +38,15 @@ public class FavoriateAction extends ActionBase {
 
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
-        ReportView rv = (ReportView) getSessionScope(AttributeConst.FEP_EMPLOYEE_ID);
+        ReportView rv = (ReportView) findone(AttributeConst.FEP_REPORT_ID);
 
         //パラメータの値をもとにFavoriateインスタンスを作成する
         FavoriateView fv = new FavoriateView(
                 null, //ログインしている従業員をいいねを押したとして登録する
                 ev,
-                rv);
+                rv
+
+                );
 
         //いいね情報取得
         List<String> errors = service.create(fv);
@@ -49,6 +55,11 @@ public class FavoriateAction extends ActionBase {
     //@throws ServletException
     //@throws IOException
     //
+
+    private ReportView findone(AttributeConst fepReportId) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
+    }
 
 
 
