@@ -54,7 +54,7 @@ public interface JpaConst {
     String JPQL_PARM_CODE = "code"; //社員番号
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
-    String JPQL_PARM_REPORT =   "report";
+    String JPQL_PARM_REPORT =   "report"; //日報
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
@@ -90,7 +90,7 @@ public interface JpaConst {
     String Q_FEP_COUNT_DEF ="SELECT COUNT(e) FROM Favoriate AS e";
     //指定した従業員が作成した日報の件数を取得する
     String Q_FEP_COUNT_ALL_MINE = ENTITY_FEP +".countAllMine";
-    String Q_FEP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Favoriate AS r WHERE r.Report = :"+JPQL_PARM_REPORT;
+    String Q_FEP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Favoriate AS r WHERE r.employee = :"  +JPQL_PARM_REPORT;
     //指定した社員番号を保持する従業員の件数を取得する
     String Q_FEP_COUNT_REGISTERED_BY_CODE = ENTITY_FEP + ".countRegisteredByCode";
     String Q_FEP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
