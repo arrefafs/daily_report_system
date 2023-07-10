@@ -167,7 +167,7 @@ public void create() throws ServletException, IOException {
         } else {
 
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
-
+            putRequestScope(AttributeConst.TOKEN, getTokenId());
             //詳細画面を表示
             forward(ForwardConst.FW_REP_SHOW);
         }

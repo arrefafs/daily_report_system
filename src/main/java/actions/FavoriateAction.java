@@ -9,24 +9,29 @@ import actions.view.EmployeeView;
 import actions.view.FavoriateView;
 import actions.view.ReportView;
 import constants.AttributeConst;
+import constants.ForwardConst;
+import services.EmployeeService;
 import services.FavoriateService;
 import services.ReportService;
 
 public class FavoriateAction extends ActionBase {
 
-    private FavoriateService service;
+    private FavoriateService fservice;
     private ReportService rservice;
+    private EmployeeService service;
 
     //メゾットを実行する
     @Override
     public void process() throws ServletException, IOException {
 
-        service = new FavoriateService();
+        fservice = new FavoriateService();
         rservice = new ReportService();
+        service = new EmployeeService();
 
         //メソッドを実行
         invoke();
-        service.close();
+        fservice.close();
+        rservice.close();
         service.close();
     }
 
@@ -34,22 +39,37 @@ public class FavoriateAction extends ActionBase {
     //* @throws ServletException
     //* @throws IOException
 
-    public void create() throws ServletException, IOException {
+    public void  create() throws ServletException, IOException {
 
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
-        ReportView rv = (ReportView) findone(AttributeConst.FEP_REPORT_ID);
+        ReportView rv = rservice.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
-        //パラメータの値をもとにFavoriateインスタンスを作成する
+
         FavoriateView fv = new FavoriateView(
                 null, //ログインしている従業員をいいねを押したとして登録する
                 ev,
                 rv
-
                 );
 
-        //いいね情報取得
-        List<String> errors = service.create(fv);
+        forward(ForwardConst.FW_REP_SHOW);
+       List<String> errors = fservice.create(fv);
+
+
+       if(errors.size()>0) {
+           putRequestScope(AttributeConst.TOKEN, getTokenId());
+           putRequestScope(AttributeConst.FAVORIATE,fv);
+           putRequestScope(AttributeConst.ERR, errors);
+
+           forward(ForwardConst.FW_REP_NEW);
+
+       }else {
+           redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+       }
+
+
+
+
 
     }
     //いいね詳細
@@ -57,10 +77,7 @@ public class FavoriateAction extends ActionBase {
     //@throws IOException
     //
 
-    private ReportView findone(AttributeConst fepReportId) {
-        // TODO 自動生成されたメソッド・スタブ
-        return null;
-    }
+
 
 
 

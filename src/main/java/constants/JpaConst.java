@@ -94,6 +94,9 @@ public interface JpaConst {
     //指定した社員番号を保持する従業員の件数を取得する
     String Q_FEP_COUNT_REGISTERED_BY_CODE = ENTITY_FEP + ".countRegisteredByCode";
     String Q_FEP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
+  //指定した従業員が作成した日報を全件idの降順で取得する
+    String  Q_FEP_GET_ALL_MINE = ENTITY_FEP + ".getAllMine";
+    String Q_FEP_GET_ALL_MINE_DEF = "SELECT r FROM Favoriate AS r WHERE r.employee = :" + JPQL_PARM_REPORT + " ORDER BY r.id DESC";
 
 
 
