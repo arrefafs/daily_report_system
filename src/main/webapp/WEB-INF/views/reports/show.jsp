@@ -65,8 +65,8 @@
 
         <p>
             <form method="POST"action="<c:url value='?action=${action}&command=${commCrt}' />">
-            <input type="hidden" name="_token" value="${_token}" />
-            <input type="hidden" name="report_id" id="${report.id}" />
+            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}"  value="${_token}" />
+            <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report_id}" />
             <input type="submit" value="いいね">
 
         </form>

@@ -44,12 +44,17 @@ public class FavoriateAction extends ActionBase {
         //セッションからログイン中の従業員情報を取得
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
         ReportView rv = rservice.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+        //CSRF対策 tokenのチェック
+
 
 
         FavoriateView fv = new FavoriateView(
-                null, //ログインしている従業員をいいねを押したとして登録する
+                null,
+                //ログインしている従業員をいいねを押したとして登録する
                 ev,
                 rv
+
+
                 );
 
         forward(ForwardConst.FW_REP_SHOW);
@@ -71,7 +76,7 @@ public class FavoriateAction extends ActionBase {
 
 
 
-    }
+        }}
     //いいね詳細
     //@throws ServletException
     //@throws IOException
@@ -85,7 +90,7 @@ public class FavoriateAction extends ActionBase {
 
 
 
-    }
+
 
 
 

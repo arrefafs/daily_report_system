@@ -13,11 +13,16 @@ public class FavoriateService extends ServiceBase {
     //指定した従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得しReportViewのリストで返却する
 
     public List<String> create(FavoriateView fv) {
+        FavoriateView errors = (fv);
+
 
         createInternal(fv);
+        return (List<String>) errors;
+
+
 
         //バリデーションで発生したエラーを返却（エラーがなければ0件の空リスト）
-        return null;
+
     }
 
 

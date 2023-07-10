@@ -21,10 +21,6 @@ public class FavoriateView {
 
 
 
-
-
-
-
     private Integer id;
 
     /*

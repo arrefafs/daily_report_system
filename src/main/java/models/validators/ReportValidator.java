@@ -17,7 +17,7 @@ public class ReportValidator {
 
     /**
      * 日報インスタンスの各項目についてバリデーションを行う
-     * @param rv 日報インスタンス
+     * @param fv 日報インスタンス
      * @return エラーのリスト
      */
     public static List<String> validate(ReportView rv) {
